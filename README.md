@@ -2,9 +2,9 @@
 
  Image clicker is a frontend application built with:
 
-The Progressive JavaScript Framework [Vue.js](https://vuejs.org/) using version 3.
+The Progressive JavaScript Framework [Vue.js](https://vuejs.org/) using version 3 and [PrimeVue](https://primevue.org/).
 
-Ecosystem:
+Main dependencies:
 
 - [PrimeVue](https://primevue.org/)
 - [PrimeFlex](https://primeflex.org/)
