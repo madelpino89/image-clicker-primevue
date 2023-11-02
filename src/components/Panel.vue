@@ -5,7 +5,7 @@
             {{ messageError }}
         </Message>
     </div>
-    <div v-if="!loading">
+    <div v-if="!loading && !error">
         <div class="grid">
             <div class="xl:col-6 lg:col-6 sm:col-12">
                 <ScrollPanel style="width: 100%; height: 100vh" :pt="{
@@ -262,7 +262,7 @@ const isUserDetailEmpty = computed(() => {
 const getRandomUsers = async () => {
     try {
         loading.value = true;
-        const res = await data.getRandomUsers(10);
+        const res = await data.getRandomUsers(18);
         users.value = res.results.map(user => {
             return {
                 clicked: 0,
