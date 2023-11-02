@@ -22,6 +22,7 @@ mkdir <project-folder-name>
 git clone <url> <project-folder-name>
 cd <project-folder-name>
 npm install
+```
 
 # After dependencies installation
 
