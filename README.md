@@ -23,6 +23,23 @@ git clone <url> <project-folder-name>
 cd <project-folder-name>
 npm install
 
+# After dependencies installation
+
+# 1st: Create a .env file
+
+Each `developer` must create a file in the root of their local project, called `.env` with the following variables and values:
+
+
+```sh
+VUE_APP_API_URL=#{API HOST }#
+```
+
+This project is for resolve a little exercise and is not necesary hide the URL API.
+
+```sh
+VUE_APP_API_URL=https://randomuser.me/api/
+```
+
 ## Project setup
 ```
 npm install
