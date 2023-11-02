@@ -2,10 +2,15 @@
 <template>
   <div class="text-center mb-5">
     <span class="mr-2">
-      <i class="pi pi-box" style="font-size: 2.5rem; color: green"  />
+      <i class="pi pi-box" style="font-size: 2.5rem; color: green" />
     </span>
     <div class="text-900 text-3xl font-medium mt-3 mb-3">Clicker Image</div>
     <span class="text-600 font-medium line-height-3">Exercise #1</span>
+  </div>
+  <div v-if="error" >
+    <Message class="col-6 col-offset-3" :closable="false" severity="error">
+      {{ messageError }}
+    </Message>
   </div>
   <div class="card" v-if="!loading">
     <DataView :value="users" :layout="layout" lazy>
@@ -56,7 +61,7 @@
             {{ userDetail.name }}
           </span>
           <Button text plain size="small" label="Viewed" icon="pi pi-eye" severity="secondary" :badge="userDetail.clicked"
-            badgeClass="p-badge-success" />
+            class="cursor-auto" badgeClass="p-badge-success" />
         </div>
       </template>
       <div class="surface-section">
@@ -134,22 +139,31 @@ const userDetail = ref({});
 const loading = ref(false);
 const layout = ref('grid');
 const visible = ref(false);
+const error = ref(null);
+const messageError = ref(null);
 
 const getUserName = (user) => {
   return `${user.title} ${user.first} ${user.last}`;
 };
 
-const getRandomUsers = async () => {
-  loading.value = true;
-  const res = await data.getRandomUsers(18);
-  users.value = res.results.map(user => {
-    return {
-      clicked: 0,
-      ...user,
-      name: getUserName(user.name)
-    };
-  });
-  loading.value = false;
+const getRandomUsers =  async () => {
+  try {
+    loading.value = true;
+    const res = await data.getRandomUsers();
+    users.value = res.results.map(user => {
+      return {
+        clicked: 0,
+        ...user,
+        name: getUserName(user.name)
+      };
+    });
+    loading.value = false;
+  } catch (e) {
+    console.log;
+    error.value = true;
+    messageError.value = e.message;
+  }
+
 };
 
 

@@ -19,6 +19,7 @@ import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions';
 import Avatar from 'primevue/avatar';
 import Dialog from 'primevue/dialog';
 import Badge from 'primevue/badge';
+import Message from 'primevue/message';
 
 
 //createApp(App).mount('#app')
@@ -34,3 +35,4 @@ app.component('DataViewLayoutOptions', DataViewLayoutOptions);
 app.component('Avatar', Avatar);
 app.component('Dialog', Dialog);
 app.component('Badge', Badge);
+app.component('Message', Message);
