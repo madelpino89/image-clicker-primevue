@@ -61,7 +61,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { ProductService } from '@/services/ProductService';
+import { ProductService } from '@/services/mocks/ProductService';
 
 onMounted(() => {
     ProductService.getProducts().then((data) => (products.value = data.slice(0, 12)));

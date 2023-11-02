@@ -1,10 +1,8 @@
 <template>
-  <Users />
+  <Users/>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
-//import Products from './components/Products.vue';
 import Users from './components/Users.vue';
 
 export default {

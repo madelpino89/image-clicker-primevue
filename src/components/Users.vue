@@ -1,5 +1,12 @@
 
 <template>
+  <div class="text-center mb-5">
+    <span class="mr-2">
+      <i class="pi pi-box" style="font-size: 2.5rem; color: green"  />
+    </span>
+    <div class="text-900 text-3xl font-medium mt-3 mb-3">Clicker Image</div>
+    <span class="text-600 font-medium line-height-3">Exercise #1</span>
+  </div>
   <div class="card" v-if="!loading">
     <DataView :value="users" :layout="layout" lazy>
       <template #header>
@@ -120,6 +127,7 @@
 import { onBeforeMount, ref } from 'vue';
 import DataView from 'primevue/dataview';
 import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions'
+import data from '@/services/data';
 
 const users = ref([]);
 const userDetail = ref({});
@@ -131,22 +139,19 @@ const getUserName = (user) => {
   return `${user.title} ${user.first} ${user.last}`;
 };
 
-
-const getRandomUsers = () => {
+const getRandomUsers = async () => {
   loading.value = true;
-  fetch('https://randomuser.me/api/?results=10')
-    .then(res => res.json())
-    .then(res => {
-      users.value = res.results.map(user => {
-        return {
-          clicked: 0,
-          ...user,
-          name: getUserName(user.name)
-        };
-      })
-      loading.value = false;
-    });
+  const res = await data.getRandomUsers(18);
+  users.value = res.results.map(user => {
+    return {
+      clicked: 0,
+      ...user,
+      name: getUserName(user.name)
+    };
+  });
+  loading.value = false;
 };
+
 
 const showUserDetail = (user) => {
   visible.value = true;
