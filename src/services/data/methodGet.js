@@ -1,4 +1,5 @@
 import { http } from "@/setup/http";
+import coupons from "@/services/mocks/coupons.json";
 
 export default {
     getRandomUsers: async (numberResults) => {
@@ -14,5 +15,8 @@ export default {
         const response = await http.get(params);
         return response.data;
         
-    }
+    },
+    getCouponsData: async () => {
+        return JSON.parse(JSON.stringify(coupons));
+    },
 };

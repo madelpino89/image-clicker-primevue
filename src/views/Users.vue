@@ -127,6 +127,7 @@ import { onBeforeMount, ref } from 'vue';
 import DataView from 'primevue/dataview';
 import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions'
 import data from '@/services/data';
+import useUtils from '@/composables/useUtils';
 
 const users = ref([]);
 const userDetail = ref({});
@@ -136,6 +137,8 @@ const visible = ref(false);
 const error = ref(null);
 const messageError = ref(null);
 
+const { capitalizeGender } = useUtils();
+
 const getUserName = (user) => {
   return `${user.title} ${user.first} ${user.last}`;
 };
@@ -143,7 +146,7 @@ const getUserName = (user) => {
 const getRandomUsers =  async () => {
   try {
     loading.value = true;
-    const res = await data.getRandomUsers('s');
+    const res = await data.getRandomUsers(24);
     users.value = res.results.map(user => {
       return {
         clicked: 0,

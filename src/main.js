@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config';
 import App from './App.vue'
+import router from "./router";
 import "primeflex/primeflex.css";
 import "primeflex/themes/primeone-light.css";
 import 'primeicons/primeicons.css'
@@ -23,12 +24,14 @@ import Badge from 'primevue/badge';
 import Message from 'primevue/message';
 import Divider from 'primevue/divider';
 import ScrollPanel from 'primevue/scrollpanel';
+import TabMenu from 'primevue/tabmenu';
 
 
 //createApp(App).mount('#app')
 const app = createApp(App);
-app.mount('#app');
 app.use(PrimeVue);
+app.use(router);
+app.mount('#app');
 app.component('Button', Button);
 app.component('Tag', Tag);
 app.component('Rating', Rating);
@@ -41,3 +44,4 @@ app.component('Badge', Badge);
 app.component('Message', Message);
 app.component('Divider', Divider);
 app.component('ScrollPanel', ScrollPanel);
+app.component('TabMenu', TabMenu);
