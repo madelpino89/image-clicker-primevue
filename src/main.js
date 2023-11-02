@@ -5,6 +5,7 @@ import "primeflex/primeflex.css";
 import "primeflex/themes/primeone-light.css";
 import 'primeicons/primeicons.css'
 import 'primevue/resources/themes/lara-light-indigo/theme.css'
+import './assets/styles.css';
 
 
 // ---------------------------------------------------------------------------
@@ -20,6 +21,8 @@ import Avatar from 'primevue/avatar';
 import Dialog from 'primevue/dialog';
 import Badge from 'primevue/badge';
 import Message from 'primevue/message';
+import Divider from 'primevue/divider';
+import ScrollPanel from 'primevue/scrollpanel';
 
 
 //createApp(App).mount('#app')
@@ -36,3 +39,5 @@ app.component('Avatar', Avatar);
 app.component('Dialog', Dialog);
 app.component('Badge', Badge);
 app.component('Message', Message);
+app.component('Divider', Divider);
+app.component('ScrollPanel', ScrollPanel);

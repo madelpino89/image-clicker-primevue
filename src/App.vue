@@ -1,14 +1,17 @@
 <template>
-  <Users/>
+  <Header />
+  <Panel />
 </template>
 
 <script>
-import Users from './components/Users.vue';
+import Header from '@/components/Header.vue';
+import Panel from '@/components/Panel.vue';
 
 export default {
   name: 'App',
   components: {
-    Users
+    Header,
+    Panel
   }
 }
 </script>

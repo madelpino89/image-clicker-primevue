@@ -1,13 +1,7 @@
 
 <template>
-  <div class="text-center mb-5">
-    <span class="mr-2">
-      <i class="pi pi-box" style="font-size: 2.5rem; color: green" />
-    </span>
-    <div class="text-900 text-3xl font-medium mt-3 mb-3">Clicker Image</div>
-    <span class="text-600 font-medium line-height-3">Exercise #1</span>
-  </div>
-  <div v-if="error" >
+  <div v-if="error" id="error-container">
+    <Divider class="col-6 col-offset-3" />
     <Message class="col-6 col-offset-3" :closable="false" severity="error">
       {{ messageError }}
     </Message>
@@ -149,7 +143,7 @@ const getUserName = (user) => {
 const getRandomUsers =  async () => {
   try {
     loading.value = true;
-    const res = await data.getRandomUsers();
+    const res = await data.getRandomUsers('s');
     users.value = res.results.map(user => {
       return {
         clicked: 0,
@@ -162,6 +156,7 @@ const getRandomUsers =  async () => {
     console.log;
     error.value = true;
     messageError.value = e.message;
+    loading.value = false;
   }
 
 };
@@ -173,21 +168,8 @@ const showUserDetail = (user) => {
   userDetail.value = user;
 };
 
-const capitalizeGender = (gender) => gender.charAt(0).toUpperCase() + gender.slice(1);
-
 onBeforeMount(async () => {
   await getRandomUsers();
 });
 </script>
-
-<style scoped>
-.card {
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  margin-bottom: 1rem;
-  padding: 1rem;
-}
-</style>
 
