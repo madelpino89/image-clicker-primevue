@@ -1,11 +1,19 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Panel from "../views/Panel.vue";
 
 const routes = [
   {
     path: "/",
+    redirect: "/image-clicker",
+    name: "Home",
+  },
+  {
+    path: "/image-clicker",
     name: "Panel",
-    component: Panel,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Panel.vue"),
   },
   {
     path: "/products",

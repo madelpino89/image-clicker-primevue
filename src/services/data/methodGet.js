@@ -11,10 +11,9 @@ export default {
             numberResults = 6;
         }
             
-        const params = numberResults ? `?results=${numberResults}&nat=ES` : `?results=6&nat=ES`;
+        const params = numberResults ? `?results=${numberResults}&nat=ES` : "?results=6&nat=ES";
         const response = await http.get(params);
         return response.data;
-        
     },
     getCouponsData: async () => {
         return JSON.parse(JSON.stringify(coupons));
