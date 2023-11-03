@@ -1,27 +1,12 @@
-
 <template>
-  <div
-    v-if="error"
-    id="error-container"
-  >
+  <div v-if="error" id="error-container">
     <Divider class="col-6 col-offset-3" />
-    <Message
-      class="col-6 col-offset-3"
-      :closable="false"
-      severity="error"
-    >
+    <Message class="col-6 col-offset-3" :closable="false" severity="error">
       {{ messageError }}
     </Message>
   </div>
-  <div
-    v-if="!loading"
-    class="card"
-  >
-    <DataView
-      :value="users"
-      :layout="layout"
-      lazy
-    >
+  <div v-if="!loading" class="card">
+    <DataView :value="users" :layout="layout" lazy>
       <template #header>
         <div class="flex justify-content-end">
           <DataViewLayoutOptions v-model="layout" />
@@ -36,11 +21,13 @@
               class="w-9 sm:w-10rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
               :src="slotProps.data.picture.large"
               :alt="slotProps.data.name"
-            >
+            />
             <div
               class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
             >
-              <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+              <div
+                class="flex flex-column align-items-center sm:align-items-start gap-3"
+              >
                 <div class="text-2xl font-bold text-900">
                   <Button
                     link
@@ -62,7 +49,7 @@
                 class="w-9 sm:w-10rem xl:w-16rem shadow-2 border-round"
                 :src="slotProps.data.picture.large"
                 :alt="slotProps.data.email"
-              >
+              />
               <div class="text-2xl font-bold">
                 <Button
                   link
@@ -84,11 +71,10 @@
       :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
     >
       <template #header>
-        <div class="inline-flex align-items-center justify-content-center gap-2">
-          <Avatar
-            :image="userDetail.picture.large"
-            shape="circle"
-          />
+        <div
+          class="inline-flex align-items-center justify-content-center gap-2"
+        >
+          <Avatar :image="userDetail.picture.large" shape="circle" />
           <span class="font-bold white-space-nowrap">
             {{ userDetail.name }}
           </span>
@@ -115,9 +101,7 @@
               <span class="mr-2">
                 <i class="pi pi-envelope" />
               </span>
-              <span>
-                Email
-              </span>
+              <span> Email </span>
             </div>
             <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
               {{ userDetail.email }}
@@ -131,9 +115,7 @@
               <span class="mr-2">
                 <i class="pi pi-phone" />
               </span>
-              <span>
-                Phone
-              </span>
+              <span> Phone </span>
             </div>
             <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
               {{ userDetail.phone }}
@@ -147,9 +129,7 @@
               <span class="mr-2">
                 <i class="pi pi-info-circle" />
               </span>
-              <span>
-                Gender
-              </span>
+              <span> Gender </span>
             </div>
             <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
               {{ capitalizeGender(userDetail.gender) }}
@@ -163,9 +143,7 @@
               <span class="mr-2">
                 <i class="pi pi-id-card" />
               </span>
-              <span>
-                DNI
-              </span>
+              <span> DNI </span>
             </div>
             <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
               {{ userDetail.id.value }}
@@ -202,21 +180,17 @@ const messageError = ref(null);
 
 const { capitalizeGender } = useUtils();
 
-const getUserName = (user) => {
-  return `${user.title} ${user.first} ${user.last}`;
-};
+const getUserName = user => `${user.title} ${user.first} ${user.last}`;
 
 const getRandomUsers = async () => {
   try {
     loading.value = true;
     const res = await data.getRandomUsers(24);
-    users.value = res.results.map(user => {
-      return {
+    users.value = res.results.map(user => ({
         clicked: 0,
         ...user,
         name: getUserName(user.name),
-      };
-    });
+      }));
     loading.value = false;
   } catch (e) {
     console.log;
@@ -226,8 +200,7 @@ const getRandomUsers = async () => {
   }
 };
 
-
-const showUserDetail = (user) => {
+const showUserDetail = user => {
   visible.value = true;
   user.clicked++;
   userDetail.value = user;
@@ -237,4 +210,3 @@ onBeforeMount(async () => {
   await getRandomUsers();
 });
 </script>
-

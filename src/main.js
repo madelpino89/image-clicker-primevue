@@ -8,7 +8,6 @@ import "primeicons/primeicons.css";
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 import "./assets/styles.css";
 
-
 // ---------------------------------------------------------------------------
 // Import components from PrimeVue
 // ---------------------------------------------------------------------------
@@ -27,8 +26,6 @@ import ScrollPanel from "primevue/scrollpanel";
 import TabMenu from "primevue/tabmenu";
 import Panel from "primevue/panel";
 
-
-//createApp(App).mount('#app')
 const app = createApp(App);
 app.use(PrimeVue);
 app.use(router);

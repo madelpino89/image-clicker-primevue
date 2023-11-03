@@ -1,11 +1,6 @@
 <template>
-  <div
-    v-if="!loading"
-    class="surface-ground px-4 py-5 md:px-6 lg:px-6"
-  >
-    <div
-      class="grid card"
-    >
+  <div v-if="!loading" class="surface-ground px-4 py-5 md:px-6 lg:px-6">
+    <div class="grid card">
       <div class="col-12 md:col-6 lg:col-6 md:px-4 lg:px-4">
         <div class="text-700 text-left">
           <div class="text-blue-600 font-bold mb-3">
@@ -43,13 +38,15 @@
         </div>
 
         <ul class="list-none p-0 m-0">
-          <li class="flex align-items-left text-left py-3 px-2 border-top-1 surface-border flex-wrap">
+          <li
+            class="flex align-items-left text-left py-3 px-2 border-top-1 surface-border flex-wrap"
+          >
             <div class="text-700 w-6 md:w-8 font-semibold">
-              <span>
-                Coupon retailer name
-              </span>
+              <span> Coupon retailer name </span>
             </div>
-            <div class="text-700 font-semibold w-full md:w-4 md:flex-order-0 flex-order-1">
+            <div
+              class="text-700 font-semibold w-full md:w-4 md:flex-order-0 flex-order-1"
+            >
               Quantity
             </div>
           </li>
@@ -66,7 +63,9 @@
                 {{ coupon.name }}
               </span>
             </div>
-            <div class="text-green-500 font-semibold w-full md:w-4 md:flex-order-0 flex-order-1">
+            <div
+              class="text-green-500 font-semibold w-full md:w-4 md:flex-order-0 flex-order-1"
+            >
               {{ coupon.count }}
             </div>
           </li>
@@ -74,9 +73,7 @@
       </div>
     </div>
 
-    <div
-      class="grid card mt-4"
-    >
+    <div class="grid card mt-4">
       <div class="col-12 md:col-6 lg:col-6 md:px-4 lg:px-4">
         <div class="text-700 text-left">
           <div class="text-blue-600 font-bold mb-3">
@@ -114,13 +111,15 @@
         </div>
 
         <ul class="list-none p-0 m-0">
-          <li class="flex align-items-left text-left py-3 px-2 border-top-1 surface-border flex-wrap">
+          <li
+            class="flex align-items-left text-left py-3 px-2 border-top-1 surface-border flex-wrap"
+          >
             <div class="text-700 w-6 md:w-8 font-semibold">
-              <span>
-                Coupon retailer id
-              </span>
+              <span> Coupon retailer id </span>
             </div>
-            <div class="text-700 font-semibold w-full md:w-4 md:flex-order-0 flex-order-1">
+            <div
+              class="text-700 font-semibold w-full md:w-4 md:flex-order-0 flex-order-1"
+            >
               Quantity
             </div>
           </li>
@@ -137,7 +136,9 @@
                 {{ coupon.name }}
               </span>
             </div>
-            <div class="text-green-500 font-semibold w-full md:w-4 md:flex-order-0 flex-order-1">
+            <div
+              class="text-green-500 font-semibold w-full md:w-4 md:flex-order-0 flex-order-1"
+            >
               {{ coupon.count }}
             </div>
           </li>
@@ -173,22 +174,22 @@ const couponsByRetailer = ref([]);
 }); */
 
 const couponsPercentOff = computed(() =>
-  coupons.value.filter((coupon) => coupon.promotion_type === "percent-off")
+  coupons.value.filter(coupon => coupon.promotion_type === "percent-off")
 );
 const couponsDollarOff = computed(() =>
-  coupons.value.filter((coupon) => coupon.promotion_type === "dollar-off")
+  coupons.value.filter(coupon => coupon.promotion_type === "dollar-off")
 );
 
-const minValueDiscount = (coupons) => {
-  const min = Math.min(...coupons.map((coupon) => coupon.value));
+const minValueDiscount = coupons => {
+  const min = Math.min(...coupons.map(coupon => coupon.value));
   return min;
 };
-const maxValueDiscount = (coupons) => {
-  const max = Math.max(...coupons.map((coupon) => coupon.value));
+const maxValueDiscount = coupons => {
+  const max = Math.max(...coupons.map(coupon => coupon.value));
   return max;
 };
 
-const averageValueDiscount = (coupons) => {
+const averageValueDiscount = coupons => {
   const average =
     coupons.reduce((acc, coupon) => acc + coupon.value, 0) / coupons.length;
   return Math.round(average);
@@ -196,8 +197,8 @@ const averageValueDiscount = (coupons) => {
 
 const getCouponsTypes = () => {
   const types = [];
-  coupons.value.forEach((coupon) => {
-    if (!types.some((type) => type.name === coupon.coupon_webshop_name)) {
+  coupons.value.forEach(coupon => {
+    if (!types.some(type => type.name === coupon.coupon_webshop_name)) {
       const objCouponType = {
         name: coupon.coupon_webshop_name,
         count: 1,
@@ -205,7 +206,7 @@ const getCouponsTypes = () => {
       types.push(objCouponType);
     } else {
       const index = types.findIndex(
-        (type) => type.name === coupon.coupon_webshop_name
+        type => type.name === coupon.coupon_webshop_name
       );
       types[index].count++;
     }
@@ -215,8 +216,8 @@ const getCouponsTypes = () => {
 
 const getCouponsByRetailer = () => {
   const retailers = [];
-  coupons.value.forEach((coupon) => {
-    if (!retailers.some((retailer) => retailer.name === coupon.webshop_id)) {
+  coupons.value.forEach(coupon => {
+    if (!retailers.some(retailer => retailer.name === coupon.webshop_id)) {
       const objCouponRetailer = {
         name: coupon.webshop_id,
         count: 1,
@@ -224,7 +225,7 @@ const getCouponsByRetailer = () => {
       retailers.push(objCouponRetailer);
     } else {
       const index = retailers.findIndex(
-        (retailer) => retailer.name === coupon.webshop_id
+        retailer => retailer.name === coupon.webshop_id
       );
       retailers[index].count++;
     }

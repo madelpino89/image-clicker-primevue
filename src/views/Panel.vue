@@ -46,7 +46,7 @@
                     class="w-9 sm:w-10rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
                     :src="slotProps.data.picture.large"
                     :alt="slotProps.data.name"
-                  >
+                  />
                   <div
                     class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
                   >
@@ -83,7 +83,7 @@
                       class="w-9 sm:w-10rem xl:w-10rem shadow-2 border-round"
                       :src="slotProps.data.picture.large"
                       :alt="slotProps.data.email"
-                    >
+                    />
                     <div class="hidden md:block text-2xl font-bold">
                       <Button
                         link
@@ -348,25 +348,19 @@ const visible = ref(false);
 
 const { capitalizeGender } = useUtils();
 
-const getUserName = (user) => {
-  return `${user.title} ${user.first} ${user.last}`;
-};
+const getUserName = user => `${user.title} ${user.first} ${user.last}`;
 
-const isUserDetailEmpty = computed(() => {
-  return Object.keys(userDetail.value).length === 0;
-});
+const isUserDetailEmpty = computed(() => Object.keys(userDetail.value).length === 0);
 
 const getRandomUsers = async () => {
   try {
     loading.value = true;
     const res = await data.getRandomUsers(18);
-    users.value = res.results.map((user) => {
-      return {
+    users.value = res.results.map(user => ({
         clicked: 0,
         ...user,
         name: getUserName(user.name),
-      };
-    });
+      }));
     loading.value = false;
   } catch (e) {
     console.log;
@@ -376,12 +370,12 @@ const getRandomUsers = async () => {
   }
 };
 
-const showUserDetail = (user) => {
+const showUserDetail = user => {
   user.clicked++;
   userDetail.value = user;
 };
 
-const showDialog = (user) => {
+const showDialog = user => {
   visible.value = true;
   user.clicked++;
   userDetail.value = user;

@@ -80,9 +80,7 @@ defineProps({
   symbol: {
     type: String,
     default: "$",
-    validator: (value) => {
-      return ["$", "%"].includes(value);
-    },
+    validator: value => ["$", "%"].includes(value),
   },
   total: {
     type: Number,
@@ -103,9 +101,7 @@ defineProps({
   color: {
     type: String,
     default: "blue",
-    validator: (value) => {
-      return ["blue", "green", "red", "yellow", "orange"].includes(value);
-    },
+    validator: value => ["blue", "green", "red", "yellow", "orange"].includes(value),
   },
 });
 </script>
