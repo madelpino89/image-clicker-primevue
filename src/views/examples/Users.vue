@@ -185,7 +185,7 @@ const getUserName = user => `${user.title} ${user.first} ${user.last}`;
 const getRandomUsers = async () => {
   try {
     loading.value = true;
-    const res = await data.getRandomUsers(24);
+    const res = await data.getRandomUsers();
     users.value = res.results.map(user => ({
         clicked: 0,
         ...user,

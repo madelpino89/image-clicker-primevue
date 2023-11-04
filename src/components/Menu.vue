@@ -56,13 +56,13 @@ const items = ref([
 ]);
 
 onBeforeMount(() => {
-    active.value = items.value.findIndex((item) => route.path === router.resolve(item.route).path);
+    active.value = items.value.findIndex(item => route.path === router.resolve(item.route).path);
 });
 
 watch(
     route,
     () => {
-        active.value = items.value.findIndex((item) => route.path === router.resolve(item.route).path);
+        active.value = items.value.findIndex(item => route.path === router.resolve(item.route).path);
     },
     { immediate: true }
 );
